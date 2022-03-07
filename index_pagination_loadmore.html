@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="./style.css" rel="stylesheet" />
+</head>
+
+<body onload="displayMorePets()">
+    <header>
+        <div class="collapse bg-dark" id="navbarHeader">
+        </div>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+                <a href="#" class="navbar-brand d-flex align-items-center">
+                    <strong>Kenton Shelter</strong>
+                </a>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="album py-5 bg-light">
+            <div class="container" id="pet-container">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="text-muted py-5">
+        <div class="flexbox-align-center">
+            <button class="btn btn-primary" id="LoadMore">Load More</button>
+        </div>
+    </footer>
+    <script>
+        var petsJson = {
+            "pets": [
+                {
+                    "name": "Benny",
+                    "type": "Dog",
+                    "breeds": ["Australian Shepherd Cross"],
+                    "sex": "Male",
+                    "color": "Brown/White",
+                    "isFixed": true,
+                    "age": "2Yrs 1Mths 4Wks",
+                    "isHealthChecked": true,
+                    "isVaccinated": true,
+                    "isWormed": true,
+                    "isChipped": true,
+                    "animalId": 23531,
+                    "chipNumber": 985113005872810,
+                    "suitability": ["Not Suitable for Children"],
+                    "aboutMe": null,
+                    "imageUrls": ["https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.1nIgCp1Vf22_jaEAJKae3gHaFD%26pid%3DApi&f=1"]
+                },
+                {
+                    "name": "Cornelia",
+                    "type": "Dog",
+                    "breeds": ["Boxer Cross", "Second Breed"],
+                    "sex": "Female",
+                    "color": "White",
+                    "isFixed": true,
+                    "age": "6Yrs 2Mths 3Wks",
+                    "isHealthChecked": true,
+                    "isVaccinated": true,
+                    "isWormed": true,
+                    "isChipped": true,
+                    "animalId": 23390,
+                    "chipNumber": 985113005872687,
+                    "suitability": ["OK with Dogs", "Laid Back", "Shy"],
+                    "aboutMe": "Cornelia is a dog. She does dog things and acts much like a dog. You should get her.",
+                    "imageUrls": ["https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.XPBL6RecJjKyPFoCkb7GPAHaGo%26pid%3DApi&f=1", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.GfbPprByKN_DB23kd022LQHaHa%26pid%3DApi&f=1"]
+                },
+                {
+                    "name": "Hemingway",
+                    "type": "Cat",
+                    "breeds": ["Domestic Short Hair Cross"],
+                    "sex": "Male",
+                    "color": "Grey",
+                    "isFixed": true,
+                    "age": "3Yrs 3Wks",
+                    "isHealthChecked": true,
+                    "isVaccinated": true,
+                    "isWormed": true,
+                    "isChipped": false,
+                    "animalId": 23897,
+                    "chipNumber": null,
+                    "suitability": "Special Needs",
+                    "aboutMe": null,
+                    "imageUrls": ["https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.EF7pgHtwZG4sblAjz3ZZWAHaE8%26pid%3DApi&f=1", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.jPxLJ1IYvqNRzuJMWkDXeAHaLH%26pid%3DApi&f=1"]
+                },
+                {
+                    "name": "Howard",
+                    "type": "Cat",
+                    "breeds": ["Domestic Short Hair Cross"],
+                    "sex": "Male",
+                    "color": "Grey",
+                    "isFixed": true,
+                    "age": "Adult",
+                    "isHealthChecked": true,
+                    "isVaccinated": true,
+                    "isWormed": true,
+                    "isChipped": false,
+                    "animalId": 23882,
+                    "chipNumber": null,
+                    "suitability": "Special Needs",
+                    "aboutMe": null,
+                    "imageUrls": ["https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.NBb9TvOeGcKIbtknqlA5UAHaFA%26pid%3DApi&f=1", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse1.mm.bing.net%2Fth%3Fid%3DOIP.nqKHjgkbHQC6EAF5ELgOmgHaE8%26pid%3DApi&f=1"]
+                },
+                {
+                    "name": "Wishbone",
+                    "type": "Dog",
+                    "breeds": ["American Bulldog Cross"],
+                    "sex": "Male",
+                    "color": "Black",
+                    "isFixed": true,
+                    "age": "2Yrs 2Mths 2Wks",
+                    "isHealthChecked": true,
+                    "isVaccinated": true,
+                    "isWormed": true,
+                    "isChipped": true,
+                    "animalId": 20579,
+                    "chipNumber": 985113004709947,
+                    "suitability": null,
+                    "aboutMe": "Wishbone is a dog who likes to do dog things. He is around 2 years old but still acts like a puppy. He enjoys people. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+                    "imageUrls": ["https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.zHHIhGNGOpULCZ_uHPl_twHaES%26pid%3DApi&f=1", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.lKv80ln-KW3fP2aKsyVeWQHaFF%26pid%3DApi&f=1", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.KqmUSS9QmeXSfjzRHfxBWwHaJ4%26pid%3DApi&f=1"]
+                },
+                {
+                    "name": "Niko",
+                    "type": "Cat",
+                    "breeds": ["Domestic Longhair Cross"],
+                    "sex": "Male",
+                    "color": "Grey Tabby/White",
+                    "isFixed": true,
+                    "age": "3Mths 3Wks",
+                    "isHealthChecked": true,
+                    "isVaccinated": true,
+                    "isWormed": true,
+                    "isChipped": true,
+                    "animalId": 23541,
+                    "chipNumber": 985113006299812,
+                    "suitability": null,
+                    "aboutMe": null,
+                    "imageUrls": ["https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse4.mm.bing.net%2Fth%3Fid%3DOIP.2xl8rfONRzFklWCCnXTsbwHaHC%26pid%3DApi&f=1", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse2.mm.bing.net%2Fth%3Fid%3DOIP.GuBpOJt8ovcTddO81f_zswHaEK%26pid%3DApi&f=1"]
+                }
+            ]
+        }
+        var pets = JSON.parse(JSON.stringify(petsJson)).pets;
+        const petsPerPage = 2;
+        var petsLoaded = 0;
+        var petContainer = document.getElementById("pet-container");
+        var loadMoreButton = document.getElementById("LoadMore");
+        function displayPet(petIndex) {
+            var pet = pets[petIndex]
+            petContainer.innerHTML +=
+                `
+            <div class="card shadow-sm">
+                
+                <a class="card-img-container" href="detail.html?index=${petIndex}">
+                    <img class="card-img" src="${pet.imageUrls[0]}"/>
+                </a>
+                <div class="card-body">
+                <p class="card-text"><strong>Name:</strong>&nbsp${pet.name}</p>
+                <p class="card-text"><strong>Breed:</strong>&nbsp${pet.breeds[0]}</p>
+                <p class="card-text"><strong>Spayed/Neutered:</strong>&nbsp${pet.isFixed ? "Yes" : "No"}</p>
+                <p class="card-text"><strong>Age:</strong>&nbsp${pet.age}</p>
+                <p class="card-text"><strong>Animal ID:</strong>&nbsp${pet.animalId}</p>
+                </div>
+            </div>
+            `
+        }
+        function displayMorePets() {
+
+            for (var i = 1; i <= petsPerPage; i++) {
+                displayPet(petsLoaded)
+                petsLoaded++;
+            }
+            // hide button once all pets are loaded
+            if (petsLoaded == pets.length) {
+                loadMoreButton.hidden = true;
+            }
+        }
+
+        loadMoreButton.addEventListener('click', function (e) {
+            displayMorePets();
+        })
+
+    </script>
+</body>
+
+</html>
