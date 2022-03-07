@@ -7,7 +7,7 @@
     <link href="./style.css" rel="stylesheet" />
 </head>
 
-<body>
+<body onload="showPage()">
     <header>
         <div class="collapse bg-dark" id="navbarHeader">
         </div>
@@ -239,18 +239,25 @@
             for (var i = 1; i <= pageCount; i++) {
                 // Add active tag to button if it is the page we are currently on
                 if (i == page) {
-                    pageIndexContainer.innerHTML += `<a class="btn btn-primary px-4 mx-1 active" href="?page=${i}" role="button">${i}</a>`;
+                    pageIndexContainer.innerHTML += `<span class="btn btn-primary px-4 mx-1 active pagination"  role="button"  data-page="${i}">${i}</span>`;
                 }
                 else {
-                    pageIndexContainer.innerHTML += `<a class="btn btn-primary px-4 mx-1" href="?page=${i}" role="button">${i}</a>`;
+                    pageIndexContainer.innerHTML += `<span class="btn btn-primary px-4 mx-1 pagination" role="button" data-page="${i}">${i}</span>`;
                 }
-
             }
+            let pagination = document.getElementsByClassName("pagination");
+            for (var i = 0; i < pagination.length; i++) {
+                pagination[i].addEventListener('click', function (e) {
+                    petContainer.innerHTML = ""
+                    showPage(event.target.dataset.page);
+                })
+            }
+
         }
-        function displayPetsForPage() {
+
+        function showPage(page = 1) {
             let offset = petsPerPage * (page - 1);
             for (var i = offset; i < offset + petsPerPage; i++) {
-                console.log(i)
                 displayPet(i)
             }
         }
@@ -258,8 +265,6 @@
 
         // Get element to render pets in and then render the correct pets for that page.
         var petContainer = document.getElementById("pet-container")
-        // Display the correct pets for that page
-        displayPetsForPage();
         // Display the buttons for each page at the bottom
         displayPageButtons();
 
